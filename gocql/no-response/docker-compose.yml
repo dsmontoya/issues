@@ -1,0 +1,11 @@
+version: '3'
+services:
+  cassandra:
+    image: cassandra
+    environment:
+       MAX_HEAP_SIZE: 1G
+       HEAP_NEWSIZE: 800M
+  migrate:
+    build: .
+    environment:
+      CASSANDRA_HOST: cassandra

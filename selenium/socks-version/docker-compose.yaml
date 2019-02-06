@@ -1,0 +1,24 @@
+version: '3'
+services:
+  chrome:
+    image: selenium/node-chrome:3.141.59
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - hub
+    environment:
+      HUB_HOST: hub
+    networks:
+      default:
+        ipv4_address: 10.19.13.3
+  hub:
+    image: selenium/hub:3.141.59
+    networks:
+      default:
+        ipv4_address: 10.19.13.4
+networks:
+  default:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.19.0.0/16
